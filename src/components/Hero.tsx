@@ -3,13 +3,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   Award, 
   Star, 
-  Shield, 
-  GraduationCap,
   Mouse,
   Calendar,
-  Play,
-  Clock,
-  User,
   Heart
 } from 'lucide-react';
 import { heroImageConfig } from '../utils/imageConfig';
@@ -26,7 +21,7 @@ const Hero: React.FC = () => {
   const fallbackColors = heroImageConfig.fallbackColors;
   
   // Hook para gerenciar carregamento das imagens
-  const { errors, loading, retryImage } = useImageLoader(heroImages, heroImageConfig.imageTimeout);
+  const { errors, loading } = useImageLoader(heroImages, heroImageConfig.imageTimeout);
 
   useEffect(() => {
     const interval = setInterval(() => {

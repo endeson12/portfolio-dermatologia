@@ -81,7 +81,7 @@ const ContactForm: React.FC = () => {
 
     if (!formData.phone.trim()) {
       newErrors.phone = 'Telefone é obrigatório';
-    } else if (!/^[\d\s-()+\-]+$/.test(formData.phone.replace(/\s/g, ''))) {
+    } else if (!/^[\d\s()+-]+$/.test(formData.phone.replace(/\s/g, ''))) {
       newErrors.phone = 'Telefone inválido';
     }
 

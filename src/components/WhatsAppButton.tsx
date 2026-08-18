@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Phone, Mail, Calendar, Star, Heart } from 'lucide-react';
+import { X, Phone, Mail, Calendar, Star, Heart } from 'lucide-react';
 
 interface ContactOption {
   id: string;

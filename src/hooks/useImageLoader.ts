@@ -134,7 +134,7 @@ export const useImageLoader = (imageUrls: string[], timeout: number = 10000) => 
   }, [imageUrls, loadImageWithRetry]);
 
   // Função para retry silencioso de todas as imagens com erro
-  const retryAllFailedImages = async () => {
+  const retryAllFailedImages = useCallback(async () => {
     const failedIndices = imageStates.errors
       .map((error, index) => error ? index : -1)
       .filter(index => index !== -1);
@@ -142,7 +142,7 @@ export const useImageLoader = (imageUrls: string[], timeout: number = 10000) => 
     for (const index of failedIndices) {
       await retryImage(index);
     }
-  };
+  }, [imageStates.errors, retryImage]);
 
   // Função para retry automático periódico de imagens com erro
   useEffect(() => {
@@ -153,7 +153,7 @@ export const useImageLoader = (imageUrls: string[], timeout: number = 10000) => 
     }, 30000); // Tenta novamente a cada 30 segundos
 
     return () => clearInterval(autoRetryInterval);
-  }, [imageStates.errors]);
+  }, [imageStates.errors, retryAllFailedImages]);
 
   return {
     ...imageStates,
